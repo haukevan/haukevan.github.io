@@ -1,0 +1,360 @@
+/*import google font*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bkg: linear-gradient(to top, #243028, #111713);
+  --dark: rgba(17, 23, 19, 1);
+  --light: hsla(24,46%,54%,0.75);
+  --text: #ffffff;
+  --accent: #58665d;
+  --subtle: rgba(51, 54, 64, 0.75);
+  font-size: 16px;
+}
+
+html {
+  font-size: 16px
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: clamp(1.1rem, 2vw + 1rem, 1.4rem);
+  line-height: 1.55;
+  color: var(--text);
+}
+
+html,body{
+  width:100%;
+  margin:0;
+  padding:0;
+  overflow-x: hidden;
+}
+
+.background_video {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -9999;
+}
+
+/************************NAVIGATION MENU************************/
+
+/*ensure nav is always at the top of z index and top of screen*/
+nav {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  padding-block: 1.2rem;
+  background-image: linear-gradient(var(--dark) 10%, 70%, transparent 90%);
+  transition: background-image 800ms cubic-bezier(0.64, 0.04, 0.26, 0.87);
+}
+
+/* gradient at top of screen */
+nav.active {
+  background-image: linear-gradient(var(--dark) 15%, 70%, transparent);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin-inline: 0.5rem;
+  /*responsive value: (smallest, prefered, largest) will scale with screen size*/
+  width: clamp(8rem, 30vw, 80rem);
+  display: grid;
+  place-items: center;
+}
+
+/*sets border for logo and button whilst tabbing through items*/
+.logo-link:focus-visible,
+.nav-link:focus-visible {
+  outline: 4px solid var(--accent);
+  outline-offset: 0.2em;
+  border-radius: 0.5rem;
+}
+
+/*ul menu item - settings for mobile nav*/
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  transform: translate3d(0, -200%, 0);
+  position: absolute;
+  z-index: -1;
+  top: 3rem;
+  left: 0;
+  right: 0;
+  background-color: var(--dark);
+  padding: 1.5rem;
+  border-bottom: 4px solid var(--accent);
+  text-align: center;
+}
+
+/*transition type for menu open close*/
+.nav-links.activated {
+  transition: transform 0.4s cubic-bezier(0.64, 0.04, 0.26, 0.87);
+}
+
+/*links have this btn class*/
+.btn {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+/*hamburger menu button*/
+.btn--menu {
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  display: grid;
+  place-items: center;
+  padding-inline: 1rem;
+  transition: transform 0.3s cubic-bezier(0.64, 0.04, 0.26, 0.87);
+}
+
+/*list items for nav*/
+li[role="none"],
+.nav-link {
+  width: 160px;
+  display: block;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease-in;
+}
+
+li:last-of-type a {
+  background-color: var(--subtle);
+  border-radius: 0.5rem;
+}
+
+ul a:hover, a:active, a:focus {
+  background-color: var(--accent);
+}
+
+/*child selector only look at direct children active*/
+ul li.active > a {
+  background-color: var(--accent);
+}
+
+/*dropdown items under Explore link hidden until hovering */
+.dropdown-content {
+  display: none;
+  position: relative;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/*on hiver, display items as block*/
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/*different class and color for droppdown buttons*/
+.dropbtn {
+  background-color: var(--light);
+  margin-top: 10px;
+}
+
+/*dropdown btn hover change color*/
+.dropbtn a:hover, a:active, a:focus {
+  background-color: var(--accent);
+}
+
+/*aria expanded tells if nav menu is open or closed*/
+.btn--menu[aria-expanded="true"] {
+  /*flip hamburger*/
+  transform: rotate(-180deg);
+}
+.btn--menu[aria-expanded="true"] + .nav-links {
+  transform: translate3d(0, 0, 0);
+}
+
+.hamb-btn {
+  display: block;
+}
+.x-btn {
+  display: none;
+  z-index: 100;
+}
+
+/*****************HEADER*********************/
+header {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/*make width 100% - 90rem and center in middle*/
+.container {
+  margin-inline: max((100% - 90rem) / 2, 1rem);
+}
+
+/*make width 100% - 70rem and center in middle*/
+.container--sm {
+  margin-inline: max((100% - 70rem) / 2, 2rem);
+}
+
+.rise {
+  opacity: 0;
+  animation: rise 0.8s ease-in-out forwards;
+}
+
+.rise.one {
+  animation: rise 1.2s ease-in-out forwards 0.5s;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.header-container {
+  display: grid;
+  gap: 1rem;
+  position: relative;
+  top: -5vh;
+}
+/*****************SECTIONS*********************/
+
+section {
+  display: grid;
+  min-height: 100vh;
+  width: 100%;
+  place-items: center;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 4rem;
+  gap: 10px;
+  overflow: hidden;
+}
+
+/*only will activate on Home section or whichever is first*/
+section:first-of-type {
+  font-size: 6rem;
+}
+
+/*******************HOME SECTION*****************************/
+#Home{
+  background-color: transparent;
+}
+
+/*make 5 columns for grid*/
+section .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 10px;
+  background-color: var(--light);
+  padding: 10px;
+  width: 100%;
+  border-radius: 1rem;
+
+}
+
+.grid-container > div {
+  background-color: transparent;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  width: 100%;
+
+}
+
+/*will start on start number and end before end number*/
+.item1 {
+  grid-column: 1 / 4;
+}
+.item2 {
+}
+
+.photo {
+  width: 30rem;
+}
+
+#About{
+  background-color: #243028
+
+}
+#Photography{
+  background-color: #243028
+
+}
+#Videography{
+  background-color: #243028
+
+}
+#Contact{
+  background-color: #243028
+
+}
+#References{
+  background-color: #243028
+
+}
+
+.hidden {
+  opacity: 0;
+  /*
+  filter: blur(5px);
+  transform: translate(-100%);
+  */
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+  /*
+  filter: blur(0);
+  transform: translate(0);
+  */
+  z-index: 1;
+}
+
+/*****************************SCREEN SIZE ADJUSTMENTS*******************/
+/*for large screen size*/
+@media (min-width: 900px) {
+  .btn--menu {
+    display: none;
+  }
+  .nav-links {
+    display: flex;
+    position: static;
+    transform: translate3d(0, 0, 0);
+    flex-direction: row;
+    border: 0;
+    z-index: 0;
+    padding: 0;
+    inset: 0;
+    background-color: transparent;
+  }
+  li[role="none"],
+  .nav-link {
+    width: initial;
+  }
+
+  .dropdown-content {
+    position: absolute;
+  }
+}

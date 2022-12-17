@@ -24,6 +24,17 @@
       <!-- defer ensures items are executed after they are available-->
       <script defer src="app.js"></script>
       <script type="text/javascript" src="https://livejs.com/live.js"></script>
+      <script type="text/javascript" src="instafeed.min.js"></script>
+
+
+      <div id="instafeed"></div>
+
+      <script type="text/javascript">
+          var feed = new Instafeed({
+            accessToken: 'IGQVJVQkxXWnRDNUVFMzg5Y3U2OUNQaHJNcGVQbjYtRGZABYjFrQjNoVlBEMF9SamNSSW9ZAOUIzUmptRFlZAbWhoVkxGM1V2elBDVDVBQzFFRDIySmJ0TnVKcHNBWnhMVkt1SlVQZAlBlUHo3ekd2QVpxOAZDZD'
+          });
+          feed.run();
+      </script>
 
       <link href="style.css" rel="stylesheet" />
   </head>

@@ -282,6 +282,11 @@ section .grid-container {
 
 }
 
+.instafeed {
+  width: 100%;
+  height: 100%;
+}
+
 /*will start on start number and end before end number*/
 .item1 {
   grid-column: 1 / 4;

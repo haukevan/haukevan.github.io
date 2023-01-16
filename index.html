@@ -24,14 +24,6 @@
       <!-- defer ensures items are executed after they are available-->
       <script defer src="app.js"></script>
       <script type="text/javascript" src="https://livejs.com/live.js"></script>
-      <script type="text/javascript" src="instafeed.min.js"></script>
-
-      <script type="text/javascript">
-          var feed = new Instafeed({
-            accessToken: 'IGQVJVQkxXWnRDNUVFMzg5Y3U2OUNQaHJNcGVQbjYtRGZABYjFrQjNoVlBEMF9SamNSSW9ZAOUIzUmptRFlZAbWhoVkxGM1V2elBDVDVBQzFFRDIySmJ0TnVKcHNBWnhMVkt1SlVQZAlBlUHo3ekd2QVpxOAZDZD'
-          });
-          feed.run();
-      </script>
 
       <link href="style.css" rel="stylesheet" />
   </head>
@@ -40,6 +32,10 @@
     <video autoplay muted loop poster id="myVideo" class="background_video">
       <source src="./assets/treesLow.mp4" type="video/mp4">
     </video>
+    <audio id="player">
+      <source src="./assets/forestSounds.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
     <nav>
       <div class="container nav-container">
         <a href="#" class="logo-link">
@@ -610,6 +606,17 @@
           </image>
           </svg>
         </a>
+        <div>
+          <button class="btn btn--audio" id="audio-btn" aria-expanded="false" aria-controls="menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="play-btn">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="pause-btn">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.531V19.94a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.506-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.395C2.806 8.757 3.63 8.25 4.51 8.25H6.75z" />
+            </svg>
+          </button>
+        </div>
+
         <div class="nav-wrapper">
           <button class="btn btn--menu" id="menu-btn" aria-expanded="false" aria-controls="menu">
             <!--hamburger button-->
@@ -638,51 +645,166 @@
         </div>
       </div>
     </nav>
-    <header>
-      <div class="container header-container">
+    <section data-section="backHome" id="Home" class="hidden">
+      <div>
         <h1 class="h1 rise">Evan Hauk Photography</h1>
         <p class="h3 rise one">Go Explore.</p>
       </div>
-    </header>
+    </section>
 
     <!--data section will specify background color-->
-    <section data-section="backHome" id="Home" class="hidden">
-      <h1 data-text >Home</h1>
-      <div id="instafeed"></div>
+    <section data-section="backAbout" id="About" class="hidden">
+      <h1 data-text >About Me</h1>
       <div class="grid-container">
         <div class="item1">
-          <p class="">Adventureeeeeeeeeee</p>
-          <p class="">Travel</p>
-          <p class="">Aerial</p>
+          <p class="para" >Based out of Kamloops, BC</p>
+          <p class="para" >I am a self taught photographer</p>
+          <p class="para" >Travel, Nature, Lifestyle</p>
         </div>
-        <div class="item2">
+        <div class="photoItem">
           <!--'.' to look in current directory for image -->
-          <img src="./assets/images/bird.jpg" alt="bird" id="bird" class="photo">
+          <img src="./assets/about.jpg" alt="aboutPhoto" id="aboutPhoto" class="photo">
         </div>
       </div>
     </section>
-    <section data-section="backAbout" id="About" class="hidden">
-      <h1 data-text >About</h1>
-    </section>
+
+
     <section data-section="backPhotography" id="Photography" class="hidden">
       <h1 data-text >Photography</h1>
+      <div class="photo-container">
+        <div class="mySlides">
+          <div class="numbertext">1 / 6</div>
+          <img class="carosal" src="./assets/bird.jpg">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">2 / 6</div>
+          <img class="carosal" src="./assets/flower.jpg">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">3 / 6</div>
+          <img class="carosal" src="./assets/redSun.jpg">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">4 / 6</div>
+          <img class="carosal" src="./assets/snowBird.jpg">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">5 / 6</div>
+          <img class="carosal" src="./assets/train.jpg">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">6 / 6</div>
+          <img class="carosal" src="./assets/trees.jpg">
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <div class="caption-container">
+          <p id="caption"></p>
+        </div>
+
+        <div class="photoRow">
+          <div class="column">
+            <img class="demo cursor" src="./assets/bird.jpg" style="width:100%" onclick="currentSlide(1)" alt="Whiskey Jack">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="./assets/flower.jpg" style="width:100%" onclick="currentSlide(2)" alt="Yellow Spring Flower">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="./assets/redSun.jpg" style="width:100%" onclick="currentSlide(3)" alt="Red Sunset">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="./assets/snowBird.jpg" style="width:100%" onclick="currentSlide(4)" alt="Snowy Bird in Tree">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="./assets/train.jpg" style="width:100%" onclick="currentSlide(5)" alt="Train through the Snow">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="./assets/trees.jpg" style="width:100%" onclick="currentSlide(6)" alt="Misty Mountains">
+          </div>
+        </div>
+      </div>
     </section>
+
+
     <section data-section="backVideography" id="Videography" class="hidden">
       <h1 data-text >Videography</h1>
     </section>
     <section data-section="backReferences" id="References" class="hidden">
       <h1 data-text >References</h1>
-      <a data-text href="https://www.codinglabweb.com/2021/03/navigation-bar-with-scroll-to-top.html">Coding Lab</a>
-      <a data-text href="https://www.youtube.com/watch?v=T33NN_pPeNI">Scroll Transitions</a>
-      <a data-text href="https://codepen.io/heatherthedev/pen/ajYQWK">Nav Transitions</a>
-      <a data-text href="https://natureblocks.com/">Nature Blocks</a>
-      <a data-text href="https://www.kylejames.co">Kyle James Photography</a>
+      <h2>Similar Business Websites</h2>
+      <p>Nature Blocks has a very innovative web design focused on custom features:</p>
+      <a href="https://natureblocks.com/">Nature Blocks</a>
+      <p>This local Photographer uses a great plug in to show the latest intagram photos on his feed:</p>
+      <a href="https://www.kylejames.co">Kyle James Photography</a>
+      <p>Innovative design with nice UI keeping smaller screen sizes in mind:</p>
+      <a href="https://www.melodydevitt.com/">Kamloops Photographer Website</a>
+      <h2>Downloadable Content Sites</h2>
+      <p>Collection of free SVG icon files:</p>
+      <a href="https://heroicons.com/">heroicons</a>
+      <p>Collection of various different icon files for web design:</p>
+      <a href="https://tabler-icons.io/">tabler-icons</a>
+      <p>Free collection of audio tracks for download:</p>
+      <a href="https://pixabay.com/sound-effects/search/nature/">Free Audio Sounds Effects</a>
+      <h2>Technical Information Websites</h2>
+      <p>Navigation Menu connected to scroll of page:</p>
+      <a href="https://www.codinglabweb.com/2021/03/navigation-bar-with-scroll-to-top.html">Coding Lab</a>
+      <p>Animations for scrolling to new sections:</p>
+      <a href="https://www.youtube.com/watch?v=T33NN_pPeNI">Scroll Transitions</a>
+      <p>Additional Navigation Transitions with Scroll:</p>
+      <a href="https://codepen.io/heatherthedev/pen/ajYQWK">Nav Transitions</a>
     </section>
     <section data-section="backContact" id="Contact" class="hidden">
-      <h1 data-text >Contact</h1>
+        <h1 data-text >Contact</h1>
+        <form name="contactForm" method="post">
+            <div class="row">
+              <div class="col-25">
+                <label for="fname">First Name</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="fname" name="firstname" placeholder="Your name.." required pattern="[A-Za-z].{1,}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Last Name</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="lname" name="lastname" placeholder="Your name.." required pattern="[A-Za-z].{1,}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="email">Email Address</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="email" name="email" placeholder="Your email.." required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="comment">Comments</label>
+              </div>
+              <div class="col-75">
+                <input class="info" type="text" id="info" name="info" placeholder="Your comment.." required>
+              </div>
+            </div>
+            <div class="row">
+              <input class="submit" type="submit" name="submit" value="Send">
+            </div>
+        </form>
     </section>
     <footer>
-      <p>Evan Hauk - Last Modified: Nov, 28, 2022</p>
+      <p>Copyrights ©EvanHaukPhotography 2023 | All rights Reserved</p>
+      <p>Evan Hauk - Last Modified: Jan, 14, 2023</p>
+      <p>Time on Website: </p>
+      <p id="timeVisited" ></p>
     </footer>
   </body>
 </html>

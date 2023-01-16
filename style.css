@@ -15,6 +15,7 @@
   --text: #ffffff;
   --accent: #58665d;
   --subtle: rgba(51, 54, 64, 0.75);
+  --charcole: hsla(133, 2%, 10%, 0.9);
   font-size: 16px;
 }
 
@@ -449,8 +450,6 @@ a[href*="https://"] {
 
 #Contact{
   background-color: #243028;
-  min-height: inherit;
-
 }
 
 form {
@@ -535,6 +534,18 @@ input[type=submit]:hover {
   transform: translate(0);
   */
   z-index: 1;
+}
+
+/*****************************FOOTER************************************/
+.footer-div {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: auto;
+  padding-right: auto;
+  background: var(--charcole);
 }
 
 /*****************************SCREEN SIZE ADJUSTMENTS*******************/

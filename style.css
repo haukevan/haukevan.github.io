@@ -11,6 +11,7 @@
 :root {
   --bkg: linear-gradient(to top, #243028, #111713);
   --dark: rgba(17, 23, 19, 1);
+  --darkDim: hsla(140, 15%, 8%, 0.6);
   --light: hsla(131, 2%, 34%,0.65);
   --text: #ffffff;
   --accent: #58665d;
@@ -51,10 +52,28 @@ html,body{
 
 .background_video {
   position: fixed;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   object-fit: cover;
   z-index: -9999;
+}
+
+a.aLink:link, a.aLink:visited {
+  background-color: white;
+  color: var(--charcole);
+  border: 2px solid var(--charcole);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 0.5rem;
+
+}
+
+a.aLink:hover, a.aLink:active {
+  background-color: var(--accent);
+  color: white;
+  border: 2px solid white;
 }
 
 /************************NAVIGATION MENU************************/
@@ -295,6 +314,10 @@ section:first-of-type {
   font-size: 6rem;
 }
 
+section:last-of-type {
+  background: var(--charcole);
+}
+
 /*******************HOME SECTION*****************************/
 #Home{
   padding-top: 0px;
@@ -302,6 +325,23 @@ section:first-of-type {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.has-dropcap {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.has-dropcap:first-letter {
+  font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+  float: left;
+  font-size: 3rem;
+  line-height: 0.5;
+}
+
+p.has-dropcap {
+  font-size: 1.5rem;
 }
 
 #About {
@@ -332,7 +372,6 @@ section:first-of-type {
 
 
 #Photography{
-  background-color: #243028;
   margin: 0;
   box-sizing: border-box;
 
@@ -391,7 +430,7 @@ img {
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover,
 .next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: var(--accent);
   transition: background-color 0.4s cubic-bezier(0.64, 0.04, 0.26, 0.87);
 
 }
@@ -441,15 +480,20 @@ img {
 }
 
 #References{
-  background-color: #243028
+  background-image:
+    radial-gradient(
+      hsla(140, 15%, 8%, 1),
+      hsla(140, 15%, 8%, 0.1)
+    );
 }
 
 a[href*="https://"] {
   font-size: 1.5rem;
+  text-shadow: 1px 1px var(--light);
+
 }
 
 #Contact{
-  background-color: #243028;
 }
 
 form {

@@ -9,7 +9,6 @@ const pauseBtn = document.querySelector('.pause-btn');
 
 //time spent on Website
 const timeSpent = document.getElementById("timeVisited");
-timeSpent.innerHTML = new Date();;
 
 //nav button click elements
 const navBtn = document.querySelector('#menu-btn');
@@ -125,10 +124,12 @@ function showAudiobutton() {
 let slideIndex = 1;
 showSlides(slideIndex);
 
+//increment
 function plusSlides(n) {
   showSlides(slideIndex += n);
 }
 
+//get current
 function currentSlide(n) {
   showSlides(slideIndex = n);
 }
@@ -138,8 +139,10 @@ function showSlides(n) {
   let slides = document.getElementsByClassName("mySlides");
   let dots = document.getElementsByClassName("demo");
   let captionText = document.getElementById("caption");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
+  if (n > slides.length)
+    {slideIndex = 1}
+  if (n < 1)
+    {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
@@ -149,4 +152,38 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
   captionText.innerHTML = dots[slideIndex-1].alt;
+}
+
+const startWebsiteTime = performance.now();
+//date and get counter of time on site:
+
+function getTimer() {
+  timer = ((performance.now() - startWebsiteTime) / 1000).toFixed(2);
+  timeSpent.innerHTML = timer + " seconds.";
+  alert("You have spent " + timer + " seconds looking at this website!");
+};
+
+//form submit alert to user
+function formSubmitted() {
+  let x = document.forms["contactForm"]["fname"].value;
+  let y = document.forms["contactForm"]["lname"].value;
+  let z = document.forms["contactForm"]["email"].value;
+  let q = document.forms["contactForm"]["info"].value;
+
+  if (x == "") {
+    alert("First Name must be filled out");
+    return false;
+  } else if (y == "") {
+    alert("Last Name must be filled out");
+    return false;
+  } else if (z == "") {
+    alert("Email must be filled out");
+    return false;
+  } else if (q == "") {
+    alert("Info must be filled out");
+    return false;
+  } else {
+    //do something here in the future to send form data.
+    alert("You successfully submitted the form!");
+  }
 }

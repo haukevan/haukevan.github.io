@@ -747,7 +747,6 @@
         <video autoplay muted loop poster class="video-item" src="./assets/lake.mp4"></video>
         <video autoplay muted loop poster class="video-item" src="./assets/cliff.mp4"></video>
         <video autoplay muted loop poster class="video-item" src="./assets/sunset.mp4"></video>
-
       </div>
     </section>
 
@@ -811,7 +810,7 @@
               </div>
             </div>
             <div class="row">
-              <input class="submit" type="submit" name="submit" value="Send">
+              <input class="submit" type="submit" name="submit" value="Send" onClick="formSubmitted()">
             </div>
         </form>
     </section>
@@ -819,7 +818,7 @@
       <div class="footer-div">
         <p>Copyrights ©EvanHaukPhotography 2023 | All rights Reserved</p>
         <p>Evan Hauk - Last Modified: Jan, 14, 2023</p>
-        <p>Time on Website: </p>
+        <a class="aLink" onclick="getTimer()">Click for Time Spent on Website: </a>
         <p id="timeVisited" ></p>
       </div>
     </footer>

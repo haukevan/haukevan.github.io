@@ -1,6 +1,5 @@
 
 const sections = document.querySelectorAll('[data-section]');
-const videos = document.querySelector('.cliff');
 
 //audio button elements
 const audioBtn = document.querySelector('#audio-btn');

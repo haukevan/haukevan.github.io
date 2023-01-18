@@ -475,8 +475,21 @@ img {
 }
 
 #Videography{
-  background-color: #243028
+  background-color: #243028;
+  width: 100%;
+}
 
+.video-carousel {
+  width: 100%; /* Set the width of the container */
+  overflow-x: scroll; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent wrapping of the videos */
+  position: absolute;
+}
+
+.video-item {
+  display: inline-block; /* Display the videos side by side */
+  height: 80vh;
+  width: auto;
 }
 
 #References{
